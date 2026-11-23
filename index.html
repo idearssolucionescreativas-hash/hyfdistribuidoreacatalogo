@@ -14,7 +14,344 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=20261123234640">
+<style>
+/* Catálogo HYF DISTRIBUIDORA · marfil de fondo, cacao en textos, champán en detalles, rubor en acentos, verde solo para WhatsApp */
+:root {
+  --marfil: #faf6f0;
+  --arena: #f1e8dc;
+  --blanco: #ffffff;
+  --cacao: #3b2a24;
+  --cacao-2: #5a463e;
+  --muted: #7a675e;
+  --line: #e6d9c8;
+  --champan: #b08d55;
+  --champan-soft: #f3e9d6;
+  --rubor: #e8c4c0;
+  --rubor-ink: #9b4f48;
+  --wa: #1fa855;
+  --wa-dark: #178a45;
+  --danger: #a23b32;
+  --ok: #2f7d5b;
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r: 14px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--marfil); color: var(--cacao); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--rubor-ink); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--champan); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+.center { text-align: center; margin-top: 16px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.eyebrow { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; color: var(--champan); }
+
+/* Botones */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 1px solid transparent; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .15s, transform .1s; }
+.btn:active { transform: scale(.98); }
+.btn.block { width: 100%; }
+.btn-main { background: var(--cacao); color: var(--marfil); }
+.btn-main:hover { background: var(--cacao-2); }
+.btn-ghost { background: transparent; border-color: var(--cacao); color: var(--cacao); }
+.btn-ghost:hover { background: var(--arena); }
+.btn-wa { background: var(--wa); color: #fff; }
+.btn-wa:hover { background: var(--wa-dark); }
+.btn-wa:disabled { background: #b9aca4; cursor: not-allowed; }
+.btn-wa-line { background: #fff; border-color: var(--wa); color: var(--wa-dark); }
+.btn-danger { background: var(--danger); color: #fff; }
+.linklike { background: none; border: 0; padding: 0; color: var(--rubor-ink); text-decoration: underline; cursor: pointer; }
+.linklike.danger { color: var(--danger); }
+
+/* Encabezado */
+.top { position: sticky; top: 0; z-index: 20; background: var(--cacao); color: var(--marfil); padding-top: env(safe-area-inset-top); }
+.top-in { display: flex; align-items: center; justify-content: space-between; min-height: 60px; }
+.logo { display: flex; align-items: baseline; gap: 8px; color: var(--marfil); text-decoration: none; }
+.logo-main { font-family: var(--display); font-size: 1.6rem; letter-spacing: .06em; }
+.logo-sub { font-size: .62rem; letter-spacing: .32em; color: var(--champan); font-weight: 700; }
+.cart-btn { position: relative; background: none; border: 1px solid rgba(250,246,240,.35); color: var(--marfil); border-radius: 999px; width: 46px; height: 46px; display: grid; place-items: center; cursor: pointer; }
+.cart-count { position: absolute; top: -4px; right: -4px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--rubor); color: var(--cacao); font-size: .72rem; font-weight: 800; display: grid; place-items: center; }
+
+/* Portada */
+.hero { background: var(--cacao); color: var(--marfil); padding: 20px 0 32px; }
+.hero h1 { font-size: clamp(1.7rem, 6vw, 2.8rem); margin-top: 8px; max-width: 18ch; }
+.seals { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.seals li { border: 1px solid var(--champan); color: var(--champan-soft); border-radius: 999px; padding: 5px 12px; font-size: .8rem; font-weight: 600; }
+
+.how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+.how-step { background: var(--blanco); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; }
+.how-step b { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--rubor); display: grid; place-items: center; font-size: .8rem; }
+
+/* Categorías */
+.cats { position: sticky; top: calc(60px + env(safe-area-inset-top)); z-index: 10; background: var(--marfil); border-bottom: 1px solid var(--line); margin-top: 18px; }
+.cats-in { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+.cats-in::-webkit-scrollbar { display: none; }
+.chip { flex: none; display: inline-flex; align-items: center; min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--cacao); color: var(--cacao); background: transparent; text-decoration: none; font-weight: 600; font-size: .9rem; cursor: pointer; white-space: nowrap; }
+.chip.on, .chip[aria-pressed="true"] { background: var(--cacao); color: var(--marfil); }
+.chip.sm { min-height: 32px; padding: 0 12px; font-size: .82rem; }
+
+/* Listado */
+.list { padding-top: 16px; padding-bottom: 40px; }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+#q { flex: 1 1 260px; min-width: 0; min-height: 44px; border: 1px solid var(--line); border-radius: 999px; padding: 0 18px; background: var(--blanco); }
+.size-filter { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.list-title { font-size: clamp(1.4rem, 4vw, 1.9rem); margin: 20px 0 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.list-title .muted { font-family: var(--body); font-size: .85rem; font-weight: 600; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.card { background: var(--blanco); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; text-decoration: none; color: var(--cacao); display: flex; flex-direction: column; min-width: 0; transition: box-shadow .15s; }
+.card:hover { box-shadow: 0 6px 20px rgba(59, 42, 36, .1); }
+/* Agotado: franja roja sobre la foto, foto en gris; nombre y precio siguen legibles */
+.card.is-out .ph img, .gallery.is-out .slides img { filter: grayscale(.85) brightness(1.05) opacity(.7); }
+.card.is-out .card-price, .card.is-out .card-retail { color: var(--muted); }
+.out-band { position: absolute; z-index: 2; left: 0; right: 0; top: 50%; transform: translateY(-50%); background: rgba(162, 59, 50, .94); color: #fff; text-align: center; font-weight: 800; font-size: .95rem; letter-spacing: .18em; text-transform: uppercase; padding: 10px 6px; box-shadow: 0 4px 14px rgba(0, 0, 0, .18); pointer-events: none; }
+.out-band.big { font-size: clamp(1rem, 2.6vw, 1.4rem); padding: 14px 8px; }
+.frame { position: relative; }
+/* Fotos: marco 3:4 (la proporción de las fotos de celular) y la foto SIEMPRE completa, sin recortes */
+.ph { position: relative; aspect-ratio: 3 / 4; background: var(--arena); }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.ph-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 12px; font-family: var(--display); font-size: 1.1rem; gap: 4px; }
+.ph-empty small { font-family: var(--body); font-size: .72rem; color: var(--cacao-2); }
+.ph-empty.big { position: relative; aspect-ratio: 3 / 4; background: linear-gradient(160deg, var(--rubor), var(--champan-soft)); border-radius: var(--r); font-size: 1.6rem; }
+.tag { position: absolute; top: 8px; left: 8px; font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+.tag.static { position: static; display: inline-block; align-self: flex-start; }
+.tag-new { background: var(--cacao); color: var(--marfil); }
+.tag-out { background: var(--blanco); color: var(--danger); border: 1px solid var(--danger); }
+.card-info { padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.card-name { font-weight: 800; font-size: .95rem; }
+.card-price { font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.card-price small { font-size: .7rem; font-weight: 600; color: var(--muted); }
+.card-retail, .card-meta { font-size: .78rem; color: var(--muted); }
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+/* Producto */
+.product { padding-top: 14px; padding-bottom: 48px; }
+.back { display: inline-block; margin-bottom: 12px; color: var(--cacao); text-decoration: none; font-weight: 600; font-size: .9rem; }
+.pgrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.gallery { position: relative; min-width: 0; }
+.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: var(--r); scrollbar-width: none; }
+.slides::-webkit-scrollbar { display: none; }
+.slides { background: var(--arena); }
+.slides img, .slides .ph-empty { flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: 3 / 4; width: 100%; height: auto; object-fit: contain; }
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+.dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; background: var(--line); padding: 0; cursor: pointer; }
+.dots button.on { background: var(--cacao); }
+.pinfo { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.pinfo h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); }
+.prices { display: flex; flex-direction: column; gap: 2px; }
+.price-big { font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.retail { color: var(--muted); font-size: .9rem; }
+.buy { display: flex; flex-direction: column; gap: 14px; background: var(--blanco); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; }
+.buy fieldset { border: 0; padding: 0; margin: 0; }
+.buy legend { font-weight: 800; font-size: .85rem; margin-bottom: 8px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt { position: relative; }
+.opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.opt span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--marfil); font-weight: 600; font-size: .9rem; }
+.opt input:checked + span { border-color: var(--cacao); background: var(--cacao); color: var(--marfil); }
+.opt input:focus-visible + span { outline: 2px solid var(--champan); outline-offset: 2px; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--marfil); }
+.stepper button { width: 46px; height: 44px; border: 0; background: none; font-size: 1.3rem; cursor: pointer; }
+.stepper input { width: 64px; height: 44px; border: 0; text-align: center; background: transparent; font-weight: 800; -moz-appearance: textfield; }
+.stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.note { background: var(--champan-soft); border-radius: 10px; padding: 10px 14px; font-size: .9rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions .btn { flex: 1 1 160px; }
+.specs { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 16px; margin: 4px 0 0; font-size: .92rem; border-top: 1px solid var(--line); padding-top: 14px; }
+.specs dt { font-weight: 800; }
+.specs dd { margin: 0; }
+
+/* Barra y carrito */
+.cartbar { position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "l go" "h go"; align-items: center; gap: 0 12px; background: var(--cacao); color: var(--marfil); border: 0; border-radius: 18px; padding: 10px 12px 10px 18px; text-align: left; cursor: pointer; box-shadow: 0 10px 30px rgba(59, 42, 36, .35); }
+.cb-left { grid-area: l; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cb-hint { grid-area: h; font-size: .78rem; color: var(--rubor); }
+.cb-hint.ok { color: #9fe2b8; }
+.cb-go { grid-area: go; background: var(--wa); color: #fff; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: .9rem; }
+body.shop { padding-bottom: 96px; }
+
+.cart { border: 0; padding: 0; margin: 0 0 0 auto; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; background: var(--marfil); color: var(--cacao); }
+.cart::backdrop { background: rgba(30, 20, 16, .45); }
+.cart[open] { display: flex; flex-direction: column; }
+.cart-head { display: flex; align-items: center; justify-content: space-between; padding: calc(14px + env(safe-area-inset-top)) 18px 14px; background: var(--cacao); color: var(--marfil); }
+.cart-head h2 { font-size: 1.4rem; }
+.x { background: none; border: 0; color: inherit; font-size: 2rem; line-height: 1; width: 44px; height: 44px; cursor: pointer; }
+.cart-body { flex: 1; overflow-y: auto; padding: 16px 18px calc(24px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; }
+.line { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 10px; align-items: center; background: var(--blanco); border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
+.line img, .line .line-ph { width: 56px; height: 70px; object-fit: cover; border-radius: 8px; background: var(--rubor); }
+.line-name { font-weight: 800; font-size: .9rem; }
+.line-meta { font-size: .78rem; color: var(--muted); }
+.line-qty { display: flex; align-items: center; gap: 4px; }
+.line-qty button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--marfil); cursor: pointer; font-size: 1.05rem; }
+.line-qty span { min-width: 24px; text-align: center; font-weight: 800; }
+.cart-empty { text-align: center; color: var(--muted); padding: 24px 0; }
+.cart-sum { display: flex; flex-direction: column; gap: 6px; }
+.meter { height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--champan); transition: width .2s; }
+.meter i.ok { background: var(--wa); }
+.cart-total { font-size: 1.05rem; }
+.cart-fields { display: grid; gap: 4px; }
+.cart-fields label { font-size: .82rem; font-weight: 700; }
+.cart-fields input { min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; background: var(--blanco); margin-bottom: 6px; }
+.cart-note { font-size: .82rem; color: var(--muted); }
+
+.toast { position: fixed; z-index: 60; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--cacao); color: var(--marfil); padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: .9rem; box-shadow: 0 8px 24px rgba(0,0,0,.2); max-width: calc(100vw - 32px); text-align: center; }
+
+.foot { border-top: 1px solid var(--line); padding: 28px 0; font-size: .85rem; color: var(--muted); text-align: center; }
+.foot .wrap { display: grid; gap: 4px; }
+.foot-brand { font-family: var(--display); font-size: 1.1rem; color: var(--cacao); }
+.notfound { padding: 60px 16px; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.flash { padding: 10px 14px; border-radius: 10px; background: #e5f3ea; color: var(--ok); font-weight: 600; margin-bottom: 12px; }
+.flash.error { background: #f8e1de; color: var(--danger); }
+
+@media (min-width: 720px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .pgrid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+  .gallery { position: sticky; top: 80px; }
+}
+@media (min-width: 1000px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 560px) {
+  .how { grid-template-columns: minmax(0, 1fr); }
+  .how-step { padding: 10px 12px; }
+}
+
+/* ---------- Panel ---------- */
+body.admin { background: #f6f1ea; }
+.adm-top { background: var(--cacao); color: var(--marfil); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: calc(10px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left)); }
+.adm-brand { color: var(--marfil); text-decoration: none; font-family: var(--display); font-size: 1.15rem; }
+.adm-brand small { font-family: var(--body); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--champan); margin-left: 6px; }
+.adm-nav { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; font-size: .9rem; }
+.adm-nav a, .adm-nav .linklike { color: var(--marfil); text-decoration: none; padding: 6px 0; }
+.adm-nav form { margin: 0; }
+.adm-main { max-width: 860px; margin: 0 auto; padding: 20px max(16px, env(safe-area-inset-right)) 60px max(16px, env(safe-area-inset-left)); display: flex; flex-direction: column; gap: 16px; }
+.adm-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.adm-head h1 { font-size: 1.8rem; }
+.adm-card { background: var(--blanco); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+.adm-card h2 { font-size: 1.2rem; margin-bottom: 12px; }
+.adm-card.narrow { max-width: 440px; width: 100%; margin: 24px auto; display: flex; flex-direction: column; gap: 12px; }
+.form { display: flex; flex-direction: column; gap: 6px; }
+.form label { font-weight: 700; font-size: .88rem; margin-top: 8px; }
+.form input:not([type=checkbox]):not([type=radio]):not([type=file]), .form select, .form textarea, .inline-form input, .adm-search { width: 100%; min-height: 46px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--marfil); }
+.form textarea { resize: vertical; }
+.form .btn { margin-top: 14px; }
+.hint { font-size: .8rem; color: var(--muted); }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.row2 > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.num { max-width: 120px; }
+.check { display: flex; gap: 10px; align-items: center; font-weight: 500 !important; margin-top: 6px !important; }
+.check input { width: 20px; height: 20px; accent-color: var(--cacao); }
+.status-pick { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px 14px; margin-top: 10px; }
+.status-pick legend { font-weight: 800; font-size: .88rem; padding: 0 6px; }
+.previews { display: flex; flex-wrap: wrap; gap: 8px; }
+.previews img { width: 72px; height: 90px; object-fit: cover; border-radius: 8px; }
+.adm-search { background: var(--blanco) !important; }
+.adm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.adm-row { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; background: var(--blanco); border: 1px solid var(--line); border-radius: var(--r); padding: 10px; scroll-margin-top: 20px; }
+.adm-row.st-oculto { opacity: .65; }
+.adm-thumb { width: 72px; height: 90px; border-radius: 8px; overflow: hidden; background: linear-gradient(160deg, var(--rubor), var(--champan-soft)); display: grid; place-items: center; font-size: .7rem; color: var(--cacao-2); text-decoration: none; text-align: center; }
+.adm-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.adm-row-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.adm-name { font-weight: 800; color: var(--cacao); text-decoration: none; }
+.adm-row-info .muted { font-size: .8rem; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.seg button { min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--marfil); font-size: .78rem; font-weight: 700; cursor: pointer; }
+.seg button.on { background: var(--cacao); border-color: var(--cacao); color: var(--marfil); }
+.seg button.new.on { background: var(--rubor); border-color: var(--rubor); color: var(--cacao); }
+.img-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.img-grid img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: contain; background: var(--arena); border-radius: 10px; }
+.img-actions { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 6px; }
+.img-actions form { margin: 0; }
+.pill { font-size: .72rem; font-weight: 800; background: var(--champan-soft); color: var(--champan); padding: 2px 8px; border-radius: 999px; }
+.danger-zone summary { cursor: pointer; color: var(--danger); font-weight: 700; }
+.danger-zone p { margin: 10px 0; font-size: .9rem; }
+.inline-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.inline-form input { flex: 1 1 200px; width: auto; }
+.inline-form input.num { flex: 0 0 80px; }
+.adm-cats { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.adm-cats li { display: flex; flex-direction: column; gap: 8px; }
+.adm-cats summary { cursor: pointer; color: var(--danger); }
+@media (max-width: 560px) { .row2 { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* ---------- Ajustes táctiles (prueba de dispositivos 23 nov 2026) ---------- */
+/* Zonas de toque de al menos 44 px sin cambiar el aspecto */
+.back { display: inline-flex; align-items: center; min-height: 44px; }
+.linklike { min-height: 44px; display: inline-flex; align-items: center; }
+.linklike.small { min-height: 40px; }
+#cClear { align-self: center; }
+.dots { gap: 0; }
+.dots button { width: 28px; height: 28px; background: transparent; display: grid; place-items: center; }
+.dots button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.dots button.on::before { background: var(--cacao); }
+.cart h2:focus { outline: none; }
+.cart, .cart-body { overscroll-behavior: contain; }
+a, button, label { -webkit-tap-highlight-color: rgba(59, 42, 36, .12); }
+@media (hover: none) { .card:hover { box-shadow: none; } .btn-ghost:hover { background: transparent; } }
+
+/* Panel en celular: menú en una sola fila deslizable */
+@media (max-width: 640px) {
+  .adm-nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; gap: 18px; scrollbar-width: none; }
+  .adm-nav::-webkit-scrollbar { display: none; }
+  .adm-nav a, .adm-nav .linklike { white-space: nowrap; min-height: 40px; display: inline-flex; align-items: center; }
+}
+/* Botón para elegir fotos grande y con la marca */
+input[type=file] { width: 100%; font-size: 1rem; }
+input[type=file]::file-selector-button { min-height: 48px; margin-right: 12px; padding: 0 18px; border: 0; border-radius: 999px; background: var(--cacao); color: var(--marfil); font: 700 .95rem var(--body); cursor: pointer; }
+/* Acciones de cada foto, una debajo de otra */
+.img-actions { flex-direction: column; align-items: stretch; gap: 4px; }
+.img-actions .pill { text-align: center; padding: 10px 8px; }
+.img-actions .linklike { justify-content: center; width: 100%; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; }
+.danger-zone summary, .adm-cats summary { min-height: 44px; display: flex; align-items: center; }
+
+/* Fotos del producto: acciones por foto */
+#fotos .hint { margin: -4px 0 14px; }
+.img-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.img-item { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.img-frame { position: relative; }
+.img-num { position: absolute; top: 6px; left: 6px; background: var(--cacao); color: var(--marfil); font-size: .72rem; font-weight: 800; padding: 3px 8px; border-radius: 999px; }
+.img-item .img-actions { display: flex; flex-direction: column; gap: 6px; margin: 0; }
+.img-item form { margin: 0; }
+.img-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 42px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--marfil); color: var(--cacao); font: 700 .82rem var(--body); cursor: pointer; text-align: center; }
+.img-btn:hover { border-color: var(--cacao); }
+.img-btn.danger { color: var(--danger); border-color: #ecc9c4; }
+.img-btn.danger.armed { background: var(--danger); color: #fff; border-color: var(--danger); }
+.replace-form label.img-btn { margin: 0 !important; }
+.replace-form .img-btn:focus-within { outline: 2px solid var(--champan); outline-offset: 2px; }
+/* Usuarios e invitaciones */
+.flash.info { background: var(--champan-soft); color: var(--cacao); }
+fieldset.plain { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+fieldset.plain[disabled] input, fieldset.plain[disabled] textarea { opacity: .75; }
+.invite-box { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 14px; align-items: baseline; background: var(--marfil); border: 1px dashed var(--champan); border-radius: 12px; padding: 14px 16px; margin: 10px 0 14px; }
+.invite-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 700; }
+.invite-code { font-size: 1.5rem; letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+.invite-link { overflow-wrap: anywhere; font-size: .9rem; }
+.user-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.user-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.user-row.off { opacity: .6; }
+.user-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.user-info .pill { align-self: flex-start; }
+.user-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.user-actions form { margin: 0; }
+.user-actions .img-btn { width: auto; }
+.tbl-wrap { overflow-x: auto; }
+table.perm { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 420px; }
+table.perm th, table.perm td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+table.perm th { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+/* Vista previa de fotos por subir */
+.previews { align-items: flex-start; }
+.preview { position: relative; }
+.preview img { width: 84px; height: 105px; object-fit: cover; border-radius: 8px; }
+.preview-x { position: absolute; top: -10px; right: -10px; width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff; background: var(--danger); color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.previews .hint { flex-basis: 100%; }
+.center a { display: inline-flex; min-height: 44px; align-items: center; }
+
+</style>
 </head>
 <body class="shop">
 <header class="top">
@@ -95,7 +432,275 @@
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-<script type="application/json" id="hyf-data">{"settings":{"brand":"HYF DISTRIBUIDORA","tagline":"Confección de familia para que tú vendas.","badges":["15 años confeccionando en Medellín","Envíos a toda Colombia"],"whatsapp":"573215959404","min":6,"terms":"Arma tu pedido aquí y envíalo por WhatsApp. En el chat te confirmamos disponibilidad, envío y forma de pago.","instagram":"hyfdistribuidora","show_retail":true},"categories":[{"slug":"sets-deportivos","name":"Sets deportivos"},{"slug":"pijamas","name":"Pijamas"}],"products":[{"id":18,"slug":"prueba-adiconal","name":"Prueba adiconal","ref":"Prueba","price":65752,"retail":58000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":true,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1d5f4b03ba13.jpg","20261123-e7e07830fd68.jpg","20261123-d18952fe847b.jpg","20261123-ba036429e047.jpg"]},{"id":1,"slug":"set-boston","name":"Set Boston","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Verde","Amarillo","Blanco","Rosa"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-e3b91d0cb8ac.jpg","20261123-9a6e325413c5.jpg","20261123-4bffd4c40263.jpg"]},{"id":2,"slug":"set-rush","name":"Set Rush","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Vinotinto","Negro","Gris","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b0a6f0c960cc.jpg","20261123-b977818fa165.jpg","20261123-295745304063.jpg"]},{"id":3,"slug":"set-nova","name":"Set Nova","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Rojo","Vinotinto","Negro","Marfil","Blanco"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1e44bed4de6b.jpg","20261123-a6264d532d29.jpg","20261123-83ac0abf8605.jpg"]},{"id":4,"slug":"core-set","name":"Core Set","ref":"","price":40000,"retail":55000,"fabric":"","description":"","colors":["Marfil","Verde","Vinotinto","Gris","Café oscuro","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-08cfc41507b6.jpg","20261123-fc75293c85d0.jpg","20261123-e105267252b1.jpg"]},{"id":5,"slug":"street-set","name":"Street Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Negro","Verde menta","Rojo","Verde militar","Camel","Azul oscuro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f22ae6752d97.jpg","20261123-2068715e35a4.jpg","20261123-698e77afc1e7.jpg","20261123-23a981147b56.jpg","20261123-d941cd3a2362.jpg"]},{"id":6,"slug":"classic-set","name":"Classic Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde","Negro","Rosado","Azul oscuro","Marfil","Gris claro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f1ab7856d201.jpg","20261123-5d0d3a11b668.jpg"]},{"id":7,"slug":"bow-set","name":"Bow Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde menta","Blanco","Verde militar","Camel"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-6adc08b3408a.jpg","20261123-b1f2a9c447ba.jpg","20261123-da9b4b1039d1.jpg"]},{"id":8,"slug":"set-sport-line","name":"Set Sport Line","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Blanco","Verde militar","Camel","Rojo","Negro","Gris"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b5c0e12949f8.jpg","20261123-894daa806a63.jpg","20261123-6c2b4dbfc6a1.jpg"]},{"id":9,"slug":"set-pastel","name":"Set Pastel","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Lila","Rosa","Azul cielo","Marfil"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-212106bcf093.jpg"]},{"id":10,"slug":"pijama-stella","name":"Pijama Stella","ref":"","price":19000,"retail":24000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-dae96884d5bd.jpg"]},{"id":11,"slug":"pijama-mia","name":"Pijama Mía","ref":"","price":16000,"retail":20000,"fabric":"","description":"","colors":["Verde","Café","Blanco","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-f2a749ec9cbb.jpg","20261123-422580809319.jpg","20261123-79f0be416af2.jpg"]},{"id":13,"slug":"set-nyc","name":"Set NYC","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f62aed4b9a83.jpg","20261123-d452c72b29a4.jpg"]},{"id":14,"slug":"urban-set","name":"Urban Set","ref":"","price":56000,"retail":66000,"fabric":"","description":"","colors":["Verde","Azul","Marfil","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7afcb69630c2.jpg","20261123-6a7c87a98733.jpg"]},{"id":15,"slug":"set-varsity","name":"Set Varsity","ref":"","price":69000,"retail":75000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7331e10d215e.jpg","20261123-d3ec75b9c2f6.jpg"]},{"id":16,"slug":"set-retro","name":"Set Retro","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-581e96c48770.jpg","20261123-89643fc0b4aa.jpg"]},{"id":17,"slug":"set-dots","name":"Set Dots","ref":"","price":59000,"retail":66000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-799359f69926.jpg","20261123-52533f93f0e2.jpg"]}],"generated":"2026-11-23T23:46:40+00:00"}</script>
-<script src="assets/catalogo.js?v=20261123234640" defer></script>
+<script type="application/json" id="hyf-data">{"settings":{"brand":"HYF DISTRIBUIDORA","tagline":"Confección de familia para que tú vendas.","badges":["15 años confeccionando en Medellín","Envíos a toda Colombia"],"whatsapp":"573215959404","min":6,"terms":"Arma tu pedido aquí y envíalo por WhatsApp. En el chat te confirmamos disponibilidad, envío y forma de pago.","instagram":"hyfdistribuidora","show_retail":true},"categories":[{"slug":"sets-deportivos","name":"Sets deportivos"},{"slug":"pijamas","name":"Pijamas"}],"products":[{"id":18,"slug":"prueba-adiconal","name":"Prueba adiconal","ref":"Prueba","price":65752,"retail":58000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":true,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1d5f4b03ba13.jpg","20261123-e7e07830fd68.jpg","20261123-d18952fe847b.jpg","20261123-ba036429e047.jpg"]},{"id":1,"slug":"set-boston","name":"Set Boston","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Verde","Amarillo","Blanco","Rosa"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-e3b91d0cb8ac.jpg","20261123-9a6e325413c5.jpg","20261123-4bffd4c40263.jpg"]},{"id":2,"slug":"set-rush","name":"Set Rush","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Vinotinto","Negro","Gris","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b0a6f0c960cc.jpg","20261123-b977818fa165.jpg","20261123-295745304063.jpg"]},{"id":3,"slug":"set-nova","name":"Set Nova","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Rojo","Vinotinto","Negro","Marfil","Blanco"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1e44bed4de6b.jpg","20261123-a6264d532d29.jpg","20261123-83ac0abf8605.jpg"]},{"id":4,"slug":"core-set","name":"Core Set","ref":"","price":40000,"retail":55000,"fabric":"","description":"","colors":["Marfil","Verde","Vinotinto","Gris","Café oscuro","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-08cfc41507b6.jpg","20261123-fc75293c85d0.jpg","20261123-e105267252b1.jpg"]},{"id":5,"slug":"street-set","name":"Street Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Negro","Verde menta","Rojo","Verde militar","Camel","Azul oscuro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f22ae6752d97.jpg","20261123-2068715e35a4.jpg","20261123-698e77afc1e7.jpg","20261123-23a981147b56.jpg","20261123-d941cd3a2362.jpg"]},{"id":6,"slug":"classic-set","name":"Classic Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde","Negro","Rosado","Azul oscuro","Marfil","Gris claro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f1ab7856d201.jpg","20261123-5d0d3a11b668.jpg"]},{"id":7,"slug":"bow-set","name":"Bow Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde menta","Blanco","Verde militar","Camel"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-6adc08b3408a.jpg","20261123-b1f2a9c447ba.jpg","20261123-da9b4b1039d1.jpg"]},{"id":8,"slug":"set-sport-line","name":"Set Sport Line","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Blanco","Verde militar","Camel","Rojo","Negro","Gris"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b5c0e12949f8.jpg","20261123-894daa806a63.jpg","20261123-6c2b4dbfc6a1.jpg"]},{"id":9,"slug":"set-pastel","name":"Set Pastel","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Lila","Rosa","Azul cielo","Marfil"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-212106bcf093.jpg"]},{"id":10,"slug":"pijama-stella","name":"Pijama Stella","ref":"","price":19000,"retail":24000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-dae96884d5bd.jpg"]},{"id":11,"slug":"pijama-mia","name":"Pijama Mía","ref":"","price":16000,"retail":20000,"fabric":"","description":"","colors":["Verde","Café","Blanco","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-f2a749ec9cbb.jpg","20261123-422580809319.jpg","20261123-79f0be416af2.jpg"]},{"id":13,"slug":"set-nyc","name":"Set NYC","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f62aed4b9a83.jpg","20261123-d452c72b29a4.jpg"]},{"id":14,"slug":"urban-set","name":"Urban Set","ref":"","price":56000,"retail":66000,"fabric":"","description":"","colors":["Verde","Azul","Marfil","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7afcb69630c2.jpg","20261123-6a7c87a98733.jpg"]},{"id":15,"slug":"set-varsity","name":"Set Varsity","ref":"","price":69000,"retail":75000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7331e10d215e.jpg","20261123-d3ec75b9c2f6.jpg"]},{"id":16,"slug":"set-retro","name":"Set Retro","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-581e96c48770.jpg","20261123-89643fc0b4aa.jpg"]},{"id":17,"slug":"set-dots","name":"Set Dots","ref":"","price":59000,"retail":66000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-799359f69926.jpg","20261123-52533f93f0e2.jpg"]}],"generated":"2026-11-23T23:53:47+00:00"}</script>
+<script>
+/* Catálogo HYF DISTRIBUIDORA · versión HTML fija (sin servidor). Generado por el exportador del panel. */
+(() => {
+  'use strict';
+  const D = JSON.parse(document.getElementById('hyf-data').textContent);
+  const C = D.settings;
+  const $ = (s, el = document) => el.querySelector(s);
+  const money = n => '$' + Math.round(n).toLocaleString('es-CO');
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const baseUrl = () => location.href.split('#')[0];
+  const thumb = f => 'fotos/' + f.replace(/\.jpg$/, '-t.jpg');
+
+  /* ---------- Almacenamiento y origen ---------- */
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } },
+  };
+  try {
+    const o = new URLSearchParams(location.search).get('o');
+    if (o) sessionStorage.setItem('hyf_o', o.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12));
+  } catch (e) { /* ignorar */ }
+  const origin = () => { try { return '#' + (sessionStorage.getItem('hyf_o') || 'WEB'); } catch (e) { return '#WEB'; } };
+
+  /* ---------- Listado ---------- */
+  let term = '';
+  const picked = new Set();
+  let current = '';
+
+  function chips() {
+    const hasNew = D.products.some(p => p.is_new);
+    const items = [['', 'Todo']];
+    if (hasNew) items.push(['nuevo', 'Lo nuevo']);
+    D.categories.forEach(c => items.push([c.slug, c.name]));
+    $('#cats').innerHTML = items.map(([slug, name]) =>
+      `<a class="chip${slug === current ? ' on' : ''}" href="#${slug ? 'c=' + slug : ''}">${esc(name)}</a>`).join('');
+  }
+
+  function card(p, i) {
+    const img = p.images[0]
+      ? `<img src="${esc(thumb(p.images[0]))}" alt="${esc(p.name)}" loading="${i < 4 ? 'eager' : 'lazy'}" width="600" height="800">`
+      : `<span class="ph-empty">${esc(p.name)}<small>Foto en camino</small></span>`;
+    const badge = p.status === 'agotado'
+      ? '<span class="out-band" aria-label="Producto agotado">Agotado</span>'
+      : (p.is_new ? '<span class="tag tag-new">Nuevo</span>' : '');
+    return `<a class="card${p.status === 'agotado' ? ' is-out' : ''}" href="#p=${esc(p.slug)}">
+      <div class="ph">${img}${badge}</div>
+      <div class="card-info">
+        <span class="card-name">${esc(p.name)}</span>
+        <span class="card-price">${money(p.price)} <small>por mayor</small></span>
+        ${C.show_retail && p.retail ? `<span class="card-retail">Al detal ${money(p.retail)}</span>` : ''}
+        ${p.colors.length ? `<span class="card-meta">${p.colors.length} color${p.colors.length > 1 ? 'es' : ''}</span>` : ''}
+      </div></a>`;
+  }
+
+  function listProducts() {
+    return D.products.filter(p => {
+      if (current === 'nuevo' && !p.is_new) return false;
+      if (current && current !== 'nuevo' && p.cat !== current) return false;
+      if (term && !(p.name + ' ' + p.ref + ' ' + p.colors.join(' ') + ' ' + p.cat_name).toLowerCase().includes(term)) return false;
+      if (picked.size && !p.sizes.some(s => picked.has(s))) return false;
+      return true;
+    });
+  }
+
+  function renderGrid() {
+    const list = listProducts();
+    $('#grid').innerHTML = list.map(card).join('');
+    $('#empty').hidden = list.length > 0;
+    $('#countLabel').textContent = list.length + (list.length === 1 ? ' referencia' : ' referencias');
+  }
+
+  function showList(slug) {
+    if (slug && slug !== 'nuevo' && !D.categories.some(c => c.slug === slug)) slug = '';
+    const changed = slug !== current || !$('#product-view').hidden;
+    current = slug;
+    $('#product-view').hidden = true;
+    $('#list-view').hidden = false;
+    $('#hero').hidden = !!slug;
+    const name = slug === 'nuevo' ? 'Lo nuevo de la semana' : (D.categories.find(c => c.slug === slug)?.name || 'Todo el catálogo');
+    $('#listTitle').textContent = name;
+    document.title = (slug ? name : 'Catálogo mayorista') + ' · ' + C.brand;
+    chips();
+    renderGrid();
+    if (changed) window.scrollTo(0, 0);
+  }
+
+  /* ---------- Producto ---------- */
+  function showProduct(slug) {
+    const p = D.products.find(x => x.slug === slug);
+    if (!p) { location.hash = ''; return; }
+    const out = p.status === 'agotado';
+    const link = baseUrl() + '#p=' + p.slug;
+    const ref = p.ref ? ' · REF ' + p.ref : '';
+    const ask = C.whatsapp ? 'https://wa.me/' + C.whatsapp + '?text=' + encodeURIComponent(`Hola ${C.brand}, me interesa el ${p.name}${ref} (${money(p.price)} por mayor).\n¿Qué tallas y colores tienen disponibles?\n${link}`) : '';
+    const opts = (name, arr) => arr.map((v, i) => `<label class="opt"><input type="radio" name="${name}" value="${esc(v)}"${i ? '' : ' checked'}><span>${esc(v)}</span></label>`).join('');
+    const slides = p.images.length
+      ? p.images.map((f, i) => `<img src="fotos/${esc(f)}" alt="${esc(p.name)} foto ${i + 1}" loading="${i ? 'lazy' : 'eager'}" width="1050" height="1400">`).join('')
+      : `<div class="ph-empty big">${esc(p.name)}<small>Foto en camino</small></div>`;
+    $('#product-view').innerHTML = `
+      <article class="wrap product">
+        <a class="back" href="#${p.cat ? 'c=' + esc(p.cat) : ''}">← ${esc(p.cat_name || 'Catálogo')}</a>
+        <div class="pgrid">
+          <div class="gallery${out ? ' is-out' : ''}">
+            <div class="frame">
+              ${out ? '<span class="out-band big" aria-label="Producto agotado">Agotado por ahora</span>' : ''}
+              <div class="slides" id="slides">${slides}</div>
+            </div>
+            ${p.images.length > 1 ? `<div class="dots" id="dots">${p.images.map((_, i) => `<button type="button" aria-label="Ver foto ${i + 1}"${i ? '' : ' class="on"'}></button>`).join('')}</div>` : ''}
+          </div>
+          <div class="pinfo">
+            ${out ? '<span class="tag tag-out static">Agotado por ahora</span>' : (p.is_new ? '<span class="tag tag-new static">Llegó esta semana</span>' : '')}
+            <h1>${esc(p.name)}</h1>
+            ${p.ref ? `<p class="muted">REF ${esc(p.ref)}</p>` : ''}
+            <div class="prices">
+              <span class="price-big">${money(p.price)}</span>
+              <span class="muted">por mayor, por unidad</span>
+              ${C.show_retail && p.retail ? `<span class="retail">Precio al detal sugerido: ${money(p.retail)}</span>` : ''}
+            </div>
+            ${out ? '' : `
+            <form class="buy" id="buy">
+              ${p.colors.length ? `<fieldset><legend>Color</legend><div class="opts">${opts('color', p.colors)}</div></fieldset>` : ''}
+              ${p.sizes.length ? `<fieldset><legend>Talla</legend><div class="opts">${opts('size', p.sizes)}</div></fieldset>` : ''}
+              <fieldset><legend>Cantidad</legend>
+                <div class="stepper">
+                  <button type="button" data-step="-1" aria-label="Quitar una">−</button>
+                  <input type="number" name="qty" id="qty" value="1" min="1" max="500" inputmode="numeric" aria-label="Cantidad">
+                  <button type="button" data-step="1" aria-label="Agregar una">+</button>
+                </div>
+              </fieldset>
+              <button type="submit" class="btn btn-main block">Agregar al pedido</button>
+              ${p.sizes.length > 1 ? `<button type="button" class="btn btn-ghost block" id="addCurve">Agregar curva completa (${esc(p.sizes.join(', '))})</button>` : ''}
+            </form>`}
+            <p class="note">Pedido mínimo: <b>${C.min} prendas surtidas</b>. Puedes mezclar referencias, tallas y colores.</p>
+            <div class="actions">
+              ${ask ? `<a class="btn btn-wa-line" href="${esc(ask)}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>` : ''}
+              <button type="button" class="btn btn-ghost" id="share">Compartir</button>
+            </div>
+            ${(p.fabric || p.description || p.colors.length) ? `<dl class="specs">
+              ${p.fabric ? `<dt>Tela</dt><dd>${esc(p.fabric)}</dd>` : ''}
+              ${p.colors.length ? `<dt>Colores</dt><dd>${esc(p.colors.join(', '))}</dd>` : ''}
+              ${p.sizes.length ? `<dt>Tallas</dt><dd>${esc(p.sizes.join(', '))}</dd>` : ''}
+              ${p.description ? `<dt>Detalles</dt><dd>${esc(p.description).replace(/\n/g, '<br>')}</dd>` : ''}
+            </dl>` : ''}
+          </div>
+        </div>
+      </article>`;
+    $('#list-view').hidden = true;
+    $('#product-view').hidden = false;
+    document.title = p.name + ' · ' + C.brand;
+    window.scrollTo(0, 0);
+
+    const item = { id: p.id, name: p.name, ref: p.ref, price: p.price, img: p.images[0] ? thumb(p.images[0]) : '' };
+    const form = $('#buy');
+    const qty = $('#qty');
+    const n = () => Math.max(1, Math.min(500, parseInt(qty.value, 10) || 1));
+    const pick = name => form?.querySelector(`input[name="${name}"]:checked`)?.value || '';
+    form?.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => { qty.value = Math.max(1, Math.min(500, n() + +b.dataset.step)); }));
+    form?.addEventListener('submit', e => { e.preventDefault(); add({ ...item, color: pick('color'), size: pick('size') }, n()); toast(`Agregado: ${n()} × ${p.name}`); });
+    $('#addCurve')?.addEventListener('click', () => { const color = pick('color'); p.sizes.forEach(s => add({ ...item, color, size: s }, n())); toast(`Curva agregada: ${p.sizes.length * n()} prendas`); });
+    $('#share')?.addEventListener('click', async () => {
+      if (navigator.share) { try { await navigator.share({ title: p.name, url: link }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+      try { await navigator.clipboard.writeText(link); toast('Enlace copiado'); } catch (e) { toast(link); }
+    });
+    const sl = $('#slides'), dots = $('#dots');
+    if (sl && dots) {
+      const ds = [...dots.children];
+      sl.addEventListener('scroll', () => { const i = Math.round(sl.scrollLeft / sl.clientWidth); ds.forEach((d, k) => d.classList.toggle('on', k === i)); }, { passive: true });
+      ds.forEach((d, k) => d.addEventListener('click', () => sl.scrollTo({ left: k * sl.clientWidth, behavior: 'smooth' })));
+    }
+  }
+
+  function route() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (h.startsWith('p=')) showProduct(h.slice(2));
+    else showList(h.startsWith('c=') ? h.slice(2) : '');
+  }
+
+  /* ---------- Pedido (igual al catálogo del panel) ---------- */
+  const KEY = 'hyf_pedido_v1';
+  let cart = store.get(KEY, []);
+  if (!Array.isArray(cart)) cart = [];
+  let toastTimer;
+  function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2200); }
+  const units = () => cart.reduce((a, l) => a + l.qty, 0);
+  const total = () => cart.reduce((a, l) => a + l.qty * l.price, 0);
+  function add(item, q) {
+    const key = [item.id, item.color || '', item.size || ''].join('|');
+    const f = cart.find(l => l.key === key);
+    if (f) f.qty = Math.min(999, f.qty + q);
+    else cart.push({ key, id: item.id, name: item.name, ref: item.ref || '', price: item.price, img: item.img || '', color: item.color || '', size: item.size || '', qty: q });
+    save();
+  }
+  function save() { cart = cart.filter(l => l.qty > 0); store.set(KEY, cart); render(); }
+  function render() {
+    const u = units(), t = total(), min = C.min, missing = Math.max(0, min - u);
+    $('#cartCount').textContent = u;
+    const bar = $('#cartbar');
+    bar.hidden = u === 0;
+    $('#cbCount').textContent = u;
+    $('#cbTotal').textContent = money(t);
+    const hint = $('#cbHint');
+    hint.textContent = missing > 0 ? `Te falta${missing === 1 ? '' : 'n'} ${missing} para el mínimo de ${min}` : 'Tu pedido cumple el mínimo';
+    hint.classList.toggle('ok', missing === 0);
+    $('#cartLines').innerHTML = cart.length ? cart.map((l, i) => `
+      <div class="line">
+        ${l.img ? `<img src="${esc(l.img)}" alt="">` : '<span class="line-ph"></span>'}
+        <div><div class="line-name">${esc(l.name)}</div>
+          <div class="line-meta">${[l.color, l.size && 'Talla ' + l.size].filter(Boolean).map(esc).join(' · ')}</div>
+          <div class="line-meta">${money(l.price)} c/u</div></div>
+        <div class="line-qty"><button type="button" data-i="${i}" data-d="-1" aria-label="Quitar una">−</button><span>${l.qty}</span><button type="button" data-i="${i}" data-d="1" aria-label="Agregar una">+</button></div>
+      </div>`).join('') : '<p class="cart-empty">Tu pedido está vacío. Elige prendas en el catálogo.</p>';
+    $('#cartTotal').textContent = money(t);
+    $('#cartProgress').textContent = missing > 0 ? `Llevas ${u} de ${min} prendas. Te falta${missing === 1 ? '' : 'n'} ${missing}.` : `Llevas ${u} prendas. Cumples el mínimo de ${min}.`;
+    const m = $('#meter'); m.style.width = Math.min(100, (u / min) * 100) + '%'; m.classList.toggle('ok', missing === 0);
+    const send = $('#cSend'); send.disabled = missing > 0 || !cart.length;
+    send.textContent = missing > 0 ? `Agrega ${missing} prenda${missing === 1 ? '' : 's'} más` : 'Enviar pedido por WhatsApp';
+  }
+  function message() {
+    const name = ($('#cName').value || '').trim(), city = ($('#cCity').value || '').trim();
+    const rows = cart.map((l, i) => `${i + 1}) ${[l.name + (l.ref ? ' · REF ' + l.ref : ''), l.color, l.size && 'Talla ' + l.size].filter(Boolean).join(' · ')}\n   ${l.qty} und × ${money(l.price)} = ${money(l.qty * l.price)}`);
+    return `Hola ${C.brand}, quiero hacer este pedido por mayor:\n\n${rows.join('\n')}\n\nTotal: ${units()} unidades · ${money(total())}\nNombre: ${name}\nCiudad de envío: ${city}\nOrigen: ${origin()}`;
+  }
+  const dlg = $('#cart');
+  let lockY = 0;
+  const lock = () => { lockY = window.scrollY; Object.assign(document.body.style, { position: 'fixed', top: -lockY + 'px', left: '0', right: '0', width: '100%' }); };
+  const unlock = () => { if (document.body.style.position !== 'fixed') return; Object.assign(document.body.style, { position: '', top: '', left: '', right: '', width: '' }); window.scrollTo(0, lockY); };
+  dlg.addEventListener('close', unlock);
+  const open = () => { if (!dlg.open) { lock(); dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', ''); } };
+  const close = () => { if (dlg.open) { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); unlock(); } };
+  $('#openCart').addEventListener('click', open);
+  $('#cartbar').addEventListener('click', open);
+  $('#closeCart').addEventListener('click', close);
+  dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
+  $('#cartLines').addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (!b) return; const l = cart[+b.dataset.i]; if (!l) return; l.qty += +b.dataset.d; save(); });
+  const fields = store.get('hyf_datos', {});
+  $('#cName').value = fields.name || ''; $('#cCity').value = fields.city || '';
+  ['#cName', '#cCity'].forEach(s => $(s).addEventListener('input', () => store.set('hyf_datos', { name: $('#cName').value, city: $('#cCity').value })));
+  $('#cSend').addEventListener('click', () => {
+    if (units() < C.min) return;
+    if (!C.whatsapp) { toast('Falta configurar el número de WhatsApp.'); return; }
+    window.location.href = 'https://wa.me/' + C.whatsapp + '?text=' + encodeURIComponent(message());
+  });
+  let armed = false;
+  $('#cClear').addEventListener('click', e => {
+    if (!armed) { armed = true; e.target.textContent = 'Toca otra vez para vaciar'; setTimeout(() => { armed = false; e.target.textContent = 'Vaciar pedido'; }, 3000); return; }
+    cart = []; save(); armed = false; e.target.textContent = 'Vaciar pedido';
+  });
+
+  /* ---------- Filtros ---------- */
+  $('#q').addEventListener('input', e => { term = e.target.value.trim().toLowerCase(); renderGrid(); });
+  const allSizes = [...new Set(D.products.flatMap(p => p.sizes))];
+  const sf = $('#sizeFilter');
+  if (allSizes.length) {
+    sf.innerHTML = '<span class="muted">Talla:</span>' + allSizes.map(s => `<button type="button" class="chip sm" data-size="${esc(s)}" aria-pressed="false">${esc(s)}</button>`).join('');
+    sf.addEventListener('click', e => {
+      const b = e.target.closest('[data-size]'); if (!b) return;
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      on ? picked.add(b.dataset.size) : picked.delete(b.dataset.size);
+      renderGrid();
+    });
+  } else sf.hidden = true;
+
+  window.addEventListener('hashchange', route);
+  route();
+  render();
+})();
+
+</script>
 </body>
 </html>
