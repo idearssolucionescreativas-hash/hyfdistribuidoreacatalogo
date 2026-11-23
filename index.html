@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>Catálogo mayorista · HYF DISTRIBUIDORA</title>
+<meta name="description" content="Confección de familia para que tú vendas. Pedido mínimo de 6 prendas surtidas. Envíos a toda Colombia.">
+<meta name="theme-color" content="#3b2a24">
+<meta property="og:site_name" content="HYF DISTRIBUIDORA">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Catálogo mayorista · HYF DISTRIBUIDORA">
+<meta property="og:description" content="Confección de familia para que tú vendas. Pedido mínimo de 6 prendas surtidas. Envíos a toda Colombia.">
+<meta property="og:image" content="fotos/20261123-1d5f4b03ba13.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/app.css?v=20261123234640">
+</head>
+<body class="shop">
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#"><span class="logo-main">HYF</span><span class="logo-sub">DISTRIBUIDORA</span></a>
+    <button type="button" class="cart-btn" id="openCart" aria-label="Ver mi pedido">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 4h-2l-1 2v1h2l3.6 7.6-1.4 2.4c-.5.9.2 2 1.2 2h10v-2h-9.6l1-1.8h7.4c.8 0 1.4-.4 1.8-1l3.4-6.2c.3-.6-.1-1-.7-1h-14.8l-.9-2zm3 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" transform="translate(0 -2)"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div id="list-view">
+    <section class="hero" id="hero">
+      <div class="wrap">
+        <p class="eyebrow">Catálogo mayorista</p>
+        <h1>Confección de familia para que tú vendas.</h1>
+        <ul class="seals"><li>15 años confeccionando en Medellín</li><li>Envíos a toda Colombia</li><li>Mínimo 6 prendas surtidas</li></ul>
+      </div>
+    </section>
+    <section class="wrap how" aria-label="Cómo comprar">
+      <div class="how-step"><b>1</b><span>Elige prendas, color y talla.</span></div>
+      <div class="how-step"><b>2</b><span>Completa mínimo 6 surtidas: puedes mezclar referencias.</span></div>
+      <div class="how-step"><b>3</b><span>Envía tu pedido por WhatsApp y lo confirmamos en el chat.</span></div>
+    </section>
+    <nav class="cats" aria-label="Categorías"><div class="wrap cats-in" id="cats"></div></nav>
+    <section class="wrap list">
+      <div class="tools">
+        <input type="search" id="q" placeholder="Buscar por nombre, referencia o color" aria-label="Buscar prenda">
+        <div class="size-filter" id="sizeFilter" role="group" aria-label="Filtrar por talla"></div>
+      </div>
+      <h2 class="list-title"><span id="listTitle">Todo el catálogo</span> <span class="muted" id="countLabel"></span></h2>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>No hay prendas con ese filtro. Prueba con otra talla o palabra.</p>
+    </section>
+  </div>
+  <div id="product-view" hidden></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-brand">HYF DISTRIBUIDORA</p>
+    <p>Confección de familia para que tú vendas.</p>
+    <p>15 años confeccionando en Medellín · Envíos a toda Colombia</p>
+    <p><a href="https://instagram.com/hyfdistribuidora" target="_blank" rel="noopener">@hyfdistribuidora</a></p>
+  </div>
+</footer>
+
+<button type="button" class="cartbar" id="cartbar" hidden>
+  <span class="cb-left"><b id="cbCount">0</b> prendas · <span id="cbTotal">$0</span></span>
+  <span class="cb-hint" id="cbHint"></span>
+  <span class="cb-go">Ver pedido</span>
+</button>
+
+<dialog class="cart" id="cart" aria-labelledby="cartTitle">
+  <div class="cart-head">
+    <h2 id="cartTitle" tabindex="-1" autofocus>Tu pedido</h2>
+    <button type="button" class="x" id="closeCart" aria-label="Cerrar">×</button>
+  </div>
+  <div class="cart-body">
+    <div id="cartLines"></div>
+    <div class="cart-sum">
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+      <p id="cartProgress"></p>
+      <p class="cart-total">Total por mayor: <b id="cartTotal">$0</b></p>
+    </div>
+    <div class="cart-fields">
+      <label for="cName">Tu nombre</label>
+      <input id="cName" autocomplete="name" maxlength="60">
+      <label for="cCity">Ciudad de envío</label>
+      <input id="cCity" autocomplete="address-level2" maxlength="60">
+    </div>
+    <button type="button" class="btn btn-wa block" id="cSend">Enviar pedido por WhatsApp</button>
+    <p class="cart-note">Arma tu pedido aquí y envíalo por WhatsApp. En el chat te confirmamos disponibilidad, envío y forma de pago.</p>
+    <button type="button" class="linklike small" id="cClear">Vaciar pedido</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script type="application/json" id="hyf-data">{"settings":{"brand":"HYF DISTRIBUIDORA","tagline":"Confección de familia para que tú vendas.","badges":["15 años confeccionando en Medellín","Envíos a toda Colombia"],"whatsapp":"573215959404","min":6,"terms":"Arma tu pedido aquí y envíalo por WhatsApp. En el chat te confirmamos disponibilidad, envío y forma de pago.","instagram":"hyfdistribuidora","show_retail":true},"categories":[{"slug":"sets-deportivos","name":"Sets deportivos"},{"slug":"pijamas","name":"Pijamas"}],"products":[{"id":18,"slug":"prueba-adiconal","name":"Prueba adiconal","ref":"Prueba","price":65752,"retail":58000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":true,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1d5f4b03ba13.jpg","20261123-e7e07830fd68.jpg","20261123-d18952fe847b.jpg","20261123-ba036429e047.jpg"]},{"id":1,"slug":"set-boston","name":"Set Boston","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Verde","Amarillo","Blanco","Rosa"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-e3b91d0cb8ac.jpg","20261123-9a6e325413c5.jpg","20261123-4bffd4c40263.jpg"]},{"id":2,"slug":"set-rush","name":"Set Rush","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Café","Vinotinto","Negro","Gris","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b0a6f0c960cc.jpg","20261123-b977818fa165.jpg","20261123-295745304063.jpg"]},{"id":3,"slug":"set-nova","name":"Set Nova","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Rojo","Vinotinto","Negro","Marfil","Blanco"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-1e44bed4de6b.jpg","20261123-a6264d532d29.jpg","20261123-83ac0abf8605.jpg"]},{"id":4,"slug":"core-set","name":"Core Set","ref":"","price":40000,"retail":55000,"fabric":"","description":"","colors":["Marfil","Verde","Vinotinto","Gris","Café oscuro","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-08cfc41507b6.jpg","20261123-fc75293c85d0.jpg","20261123-e105267252b1.jpg"]},{"id":5,"slug":"street-set","name":"Street Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Negro","Verde menta","Rojo","Verde militar","Camel","Azul oscuro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f22ae6752d97.jpg","20261123-2068715e35a4.jpg","20261123-698e77afc1e7.jpg","20261123-23a981147b56.jpg","20261123-d941cd3a2362.jpg"]},{"id":6,"slug":"classic-set","name":"Classic Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde","Negro","Rosado","Azul oscuro","Marfil","Gris claro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f1ab7856d201.jpg","20261123-5d0d3a11b668.jpg"]},{"id":7,"slug":"bow-set","name":"Bow Set","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Verde menta","Blanco","Verde militar","Camel"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-6adc08b3408a.jpg","20261123-b1f2a9c447ba.jpg","20261123-da9b4b1039d1.jpg"]},{"id":8,"slug":"set-sport-line","name":"Set Sport Line","ref":"","price":40000,"retail":52000,"fabric":"","description":"","colors":["Blanco","Verde militar","Camel","Rojo","Negro","Gris"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-b5c0e12949f8.jpg","20261123-894daa806a63.jpg","20261123-6c2b4dbfc6a1.jpg"]},{"id":9,"slug":"set-pastel","name":"Set Pastel","ref":"","price":58000,"retail":68000,"fabric":"","description":"","colors":["Lila","Rosa","Azul cielo","Marfil"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-212106bcf093.jpg"]},{"id":10,"slug":"pijama-stella","name":"Pijama Stella","ref":"","price":19000,"retail":24000,"fabric":"","description":"","colors":[],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-dae96884d5bd.jpg"]},{"id":11,"slug":"pijama-mia","name":"Pijama Mía","ref":"","price":16000,"retail":20000,"fabric":"","description":"","colors":["Verde","Café","Blanco","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"pijamas","cat_name":"Pijamas","images":["20261123-f2a749ec9cbb.jpg","20261123-422580809319.jpg","20261123-79f0be416af2.jpg"]},{"id":13,"slug":"set-nyc","name":"Set NYC","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-f62aed4b9a83.jpg","20261123-d452c72b29a4.jpg"]},{"id":14,"slug":"urban-set","name":"Urban Set","ref":"","price":56000,"retail":66000,"fabric":"","description":"","colors":["Verde","Azul","Marfil","Negro"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7afcb69630c2.jpg","20261123-6a7c87a98733.jpg"]},{"id":15,"slug":"set-varsity","name":"Set Varsity","ref":"","price":69000,"retail":75000,"fabric":"","description":"","colors":["Negro","Camel","Café","Vinotinto","Rojo"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-7331e10d215e.jpg","20261123-d3ec75b9c2f6.jpg"]},{"id":16,"slug":"set-retro","name":"Set Retro","ref":"","price":48000,"retail":58000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-581e96c48770.jpg","20261123-89643fc0b4aa.jpg"]},{"id":17,"slug":"set-dots","name":"Set Dots","ref":"","price":59000,"retail":66000,"fabric":"","description":"","colors":["Rojo","Camel","Azul rey","Azul cielo","Verde"],"sizes":[],"status":"disponible","is_new":false,"cat":"sets-deportivos","cat_name":"Sets deportivos","images":["20261123-799359f69926.jpg","20261123-52533f93f0e2.jpg"]}],"generated":"2026-11-23T23:46:40+00:00"}</script>
+<script src="assets/catalogo.js?v=20261123234640" defer></script>
+</body>
+</html>
